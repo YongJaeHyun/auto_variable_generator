@@ -31,7 +31,7 @@ const Header = () => {
           </Link>
           <HStack spacing="1rem">
             <Flex w="2.5rem" h="2.5rem">
-              <Button as="a" target="_blank" href="https://github.com/YongJaeHyun" w="2.5rem" h="2.5rem">
+              <Button as="a" target="_blank" href="https://github.com/YongJaeHyun/auto_variable_generator" w="2.5rem" h="2.5rem">
                 <Icon as={IoLogoGithub} boxSize={6} />
               </Button>
             </Flex>
