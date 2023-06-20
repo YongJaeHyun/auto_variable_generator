@@ -15,7 +15,10 @@ const Footer = () => {
     >
       <VStack>
         <Text fontSize="sm" colorScheme="whiteAlpha">
-          CodeNamer made by YongjaeHyun
+          Auto Variable Generator made by YongjaeHyun
+        </Text>
+        <Text fontSize="sm" colorScheme="whiteAlpha">
+          Recommend by ChatGPT 3.5 turbo
         </Text>
         <HStack spacing="1rem">
           <Link target="_blank" href="https://github.com/YongJaeHyun">
@@ -30,7 +33,7 @@ const Footer = () => {
           </Link>
         </HStack>
         <Text fontSize="sm" colorScheme="whiteAlpha">
-          Copyright &copy; 2023 CodeNamer. All rights reserved.
+          Copyright &copy; 2023 Auto Variable Generator. All rights reserved.
         </Text>
       </VStack>
     </Center>
