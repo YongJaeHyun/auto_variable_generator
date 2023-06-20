@@ -3,7 +3,6 @@ import {
   Button,
   Card,
   CardBody,
-  CardHeader,
   Center,
   Divider,
   Flex,
@@ -17,12 +16,12 @@ import {
   ToastPosition,
   useToast,
 } from "@chakra-ui/react";
-import axios from "axios";
 import Header from "./components/Header";
 import { useRef, useState } from "react";
 import Footer from "./components/Footer";
 import { IoMdCopy } from "react-icons/io";
 import { MdCheckCircle, MdOutlineArrowForwardIos } from "react-icons/md";
+import axios from "axios";
 
 interface IGeneratedVars {
   name: string;
@@ -55,7 +54,7 @@ function App() {
     });
   }
 
-  function copyToClipBoard(text: string) {
+  function copyTextToClipboard(text: string) {
     console.log(text);
     if (navigator.clipboard) {
       // (IE는 사용 못하고, 크롬은 66버전 이상일때 사용 가능합니다.)
@@ -97,7 +96,7 @@ function App() {
       "https://localhost:8443/ask",
       { prompt }
     );
-    if (data.state === true) {
+    if (data?.state === true) {
       setGeneratedVars(data.data);
     } else {
       makeToast("error", "bottom-left", data.message);
@@ -125,6 +124,7 @@ function App() {
                   value={prompt}
                   placeholder="Copy and Paste Your Function"
                   resize="none"
+                  className="scrollBarHidden"
                   onChange={(e) => setPrompt(e.target.value)}
                 ></Textarea>
               </Box>
@@ -164,56 +164,51 @@ function App() {
                   borderColor="gray.200"
                   borderRadius="md"
                   overflowY="scroll"
+                  className="scrollBarHidden"
                 >
                   {generatedVars.length > 0 && (
-                    <>
-                      <CardHeader>
-                        <Heading size="md">추천 변수명</Heading>
-                      </CardHeader>
-                      <CardBody>
-                        <Stack divider={<StackDivider />} spacing="4">
-                          {generatedVars?.map((variable, idx) => (
-                            <Box key={idx}>
-                              <Flex h="2rem" align="center">
-                                <Heading size="md">{variable.name}</Heading>
-                                <Button
-                                  w="5rem"
-                                  h="2rem"
-                                  ml={3}
-                                  size="xs"
-                                  paddingLeft={3}
-                                  paddingRight={3}
-                                  borderRadius="full"
-                                  colorScheme="twitter"
-                                  variant="outline"
-                                  gap={1}
-                                  onClick={() => copyToClipBoard(variable.name)}
-                                >
-                                  <Icon as={IoMdCopy} boxSize={5} />
-                                  <Text fontSize="sm">Copy</Text>
-                                </Button>
+                    <CardBody>
+                      <Stack divider={<StackDivider />} spacing="4">
+                        {generatedVars?.map((variable, idx) => (
+                          <Box key={idx}>
+                            <Flex h="2rem" align="center">
+                              <Heading size="md">{variable.name}</Heading>
+                              <Button
+                                w="5rem"
+                                h="2rem"
+                                ml={3}
+                                size="xs"
+                                paddingLeft={3}
+                                paddingRight={3}
+                                borderRadius="full"
+                                colorScheme="twitter"
+                                variant="outline"
+                                gap={1}
+                                onClick={() => copyTextToClipboard(variable.name)}
+                              >
+                                <Icon as={IoMdCopy} boxSize={5} />
+                                <Text fontSize="sm">Copy</Text>
+                              </Button>
+                            </Flex>
+                            <Flex pt="3" fontSize="sm" align="flex-start">
+                              <Flex
+                                h="2rem"
+                                paddingLeft={3}
+                                paddingRight={3}
+                                borderRadius="full"
+                                color="green.500"
+                              >
+                                <Icon as={MdCheckCircle} boxSize={4} />
+                                <Text ml={1} fontSize="sm" w="3.5rem">
+                                  추천 이유
+                                </Text>
                               </Flex>
-                              <Flex pt="2" fontSize="sm" align="center">
-                                <Flex
-                                  h="2rem"
-                                  paddingLeft={3}
-                                  paddingRight={3}
-                                  align="center"
-                                  borderRadius="full"
-                                  color="green.500"
-                                >
-                                  <Icon as={MdCheckCircle} boxSize={4} />
-                                  <Text ml={1} fontSize="sm" w="3.5rem">
-                                    추천 이유
-                                  </Text>
-                                </Flex>
-                                <Text w="auto">{variable.reason}</Text>
-                              </Flex>
-                            </Box>
-                          ))}
-                        </Stack>
-                      </CardBody>
-                    </>
+                              <Text w="auto">{variable.reason}</Text>
+                            </Flex>
+                          </Box>
+                        ))}
+                      </Stack>
+                    </CardBody>
                   )}
                 </Card>
               </Box>
