@@ -93,7 +93,7 @@ function App() {
       behavior: "smooth",
     });
     const { data }: { data: IChatGPTResponse } = await axios.post(
-      "https://localhost:8443/ask",
+      "https://localhost:8080/ask",
       { prompt }
     );
     if (data?.state === true) {
