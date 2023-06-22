@@ -1,6 +1,6 @@
 #Stage 1
 #######################################
-FROM node:18 AS builder
+FROM --platform=linux/amd64 node:18 AS builder
 
 # root 에 app 폴더를 생성
 RUN mkdir /app
