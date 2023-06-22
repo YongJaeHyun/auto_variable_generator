@@ -1,6 +1,7 @@
 #Stage 1
 #######################################
-FROM --platform=linux/amd64 node:18 AS builder
+# --platform=linux/amd64
+FROM node:18 AS builder 
 
 # root 에 app 폴더를 생성
 RUN mkdir /app
@@ -34,7 +35,7 @@ COPY --from=builder /app/build /app/build
 RUN rm /etc/nginx/conf.d/default.conf
 
 # host pc 의 nginx.conf 를 아래 경로에 복사
-COPY ./nginx.conf /etc/nginx/conf.d
+COPY ./nginx.conf /etc/nginx/conf.d/
 
 # 80 포트 오픈
 EXPOSE 80

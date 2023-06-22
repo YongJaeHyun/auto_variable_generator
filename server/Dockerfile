@@ -1,5 +1,5 @@
 # 가져올 이미지를 정의
-FROM --platform=linux/amd64 node:18
+FROM node:18
 
 # root 에 app 폴더를 생성
 RUN mkdir /app
