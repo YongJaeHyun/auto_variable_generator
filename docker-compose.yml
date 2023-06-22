@@ -1,0 +1,17 @@
+version: "3"
+services:
+  client:
+    container_name: client
+    image: dltjrrbs2020/auto_variable_generator_client
+    ports:
+      - "80:80"
+
+  server:
+    container_name: server
+    image: dltjrrbs2020/auto_variable_generator_server
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
