@@ -27,7 +27,7 @@ const Header = () => {
             fontWeight="bold"
             fontSize="1.5rem"
           >
-            자동 변수명 생성기
+            자동 함수명 생성기
           </Link>
           <HStack spacing="1rem">
             <Flex w="2.5rem" h="2.5rem">
