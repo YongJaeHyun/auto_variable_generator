@@ -92,10 +92,7 @@ function App() {
     outputRef.current.scrollIntoView({
       behavior: "smooth",
     });
-    const { data }: { data: IChatGPTResponse } = await axios.post(
-      "https://localhost:8080/ask",
-      { prompt }
-    );
+    const { data }: { data: IChatGPTResponse } = await axios.post("/api/ask", { prompt });
     if (data?.state === true) {
       setGeneratedVars(data.data);
     } else {
