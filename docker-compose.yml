@@ -26,9 +26,9 @@ services:
     container_name: server
     image: dltjrrbs2020/auto_variable_generator_server
     ports:
-      - "8080:8080"
+      - "5000:5000"
     expose:
-      - 8080
+      - 5000
     environment:
       OPENAI_API_KEY: ${OPENAI_API_KEY}
 
