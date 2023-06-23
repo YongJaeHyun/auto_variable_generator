@@ -4,8 +4,6 @@ services:
     platform: linux/amd64
     container_name: client
     image: dltjrrbs2020/auto_variable_generator_client
-    ports:
-      - "80:80"
     expose:
       - 3000
     volumes:
