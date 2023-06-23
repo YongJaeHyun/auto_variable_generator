@@ -8,6 +8,7 @@ import {
   Flex,
   Heading,
   Icon,
+  Spinner,
   Stack,
   StackDivider,
   Text,
@@ -38,10 +39,14 @@ type status = "info" | "warning" | "success" | "error" | "loading" | undefined;
 
 function App() {
   const [prompt, setPrompt] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [generatedVars, setGeneratedVars] = useState<IGeneratedVars[]>([]);
   const toast = useToast();
   const toastIdRef = useRef<ToastId>();
   const outputRef = useRef<any>();
+
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL as string;
+  console.log(SERVER_URL);
 
   function makeToast(status: status, position: ToastPosition, title: string) {
     toastIdRef.current = toast({
@@ -89,15 +94,19 @@ function App() {
   }
 
   async function genVariable() {
+    setIsLoading(true);
     outputRef.current.scrollIntoView({
       behavior: "smooth",
     });
-    const { data }: { data: IChatGPTResponse } = await axios.post("/api/ask", { prompt });
+    const { data }: { data: IChatGPTResponse } = await axios.post(`${SERVER_URL}/ask`, {
+      prompt,
+    });
     if (data?.state === true) {
       setGeneratedVars(data.data);
     } else {
       makeToast("error", "bottom-left", data.message);
     }
+    setIsLoading(false);
   }
 
   return (
@@ -106,10 +115,10 @@ function App() {
       <Box as="main" mt={5}>
         <form>
           <Flex
-            h={{ sm: "auto", lg: "60vh" }}
+            h={{ base: "auto", lg: "60vh" }}
             paddingLeft={10}
             paddingRight={10}
-            flexDirection={{ sm: "column", lg: "row" }}
+            flexDirection={{ base: "column", lg: "row" }}
           >
             <Flex as="section" w="full" flexDirection="column">
               <Heading w="full" fontSize="xl" mb={5}>
@@ -127,9 +136,9 @@ function App() {
               </Box>
             </Flex>
 
-            <Center mt={16} mb={5} ml={{ sm: "0", lg: "5" }} mr={{ sm: "0", lg: "5" }}>
+            <Center mt={16} mb={5} ml={{ base: "0", lg: "5" }} mr={{ base: "0", lg: "5" }}>
               <Button
-                w={{ sm: "full" }}
+                w={{ base: "full" }}
                 onClick={genVariable}
                 borderRadius="full"
                 colorScheme="linkedin"
@@ -149,7 +158,7 @@ function App() {
               as="section"
               w="full"
               flexDirection="column"
-              mb={{ sm: "10", lg: "0" }}
+              mb={{ base: "10", lg: "0" }}
             >
               <Heading w="full" fontSize="xl" mb={5}>
                 Output
@@ -163,7 +172,18 @@ function App() {
                   overflowY="scroll"
                   className="scrollBarHidden"
                 >
-                  {generatedVars.length > 0 && (
+                  {isLoading && (
+                    <Center h="full">
+                      <Spinner
+                        thickness="3px"
+                        speed="0.5s"
+                        emptyColor="gray.200"
+                        color="blue.500"
+                        size="xl"
+                      />
+                    </Center>
+                  )}
+                  {generatedVars.length > 0 && !isLoading && (
                     <CardBody>
                       <Stack divider={<StackDivider />} spacing="4">
                         {generatedVars?.map((variable, idx) => (
