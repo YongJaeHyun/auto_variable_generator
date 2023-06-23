@@ -6,7 +6,7 @@ const fs = require("fs");
 const cors = require("cors");
 const { genVariable } = require("./genVariable");
 
-const PORT = 5000;
+const PORT = 8888;
 
 const app = express();
 
