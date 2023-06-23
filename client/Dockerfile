@@ -7,11 +7,10 @@ FROM node:18 AS builder
 WORKDIR /usr/src/app
 
 # package.json과 package-lock.json를 Docker environment로 복사
-COPY package-lock.json ./
-COPY package.json ./
+COPY package*.json ./
 
-# 모든 node packages 설치
-RUN npm ci 
+# 모든 node production packages 설치
+RUN npm ci --omit=dev
 
 # 모든 파일 Docker environment로 복사 후 빌드
 COPY . .
