@@ -5,6 +5,13 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import theme from "./theme";
+import { hydrate, render } from "react-dom";
+
+// hydrate 설정
+const $root = document.getElementById('root') as HTMLElement;
+const renderOrHydrate = $root.hasChildNodes() ? hydrate : render;
+
+renderOrHydrate(<App />, $root);
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(

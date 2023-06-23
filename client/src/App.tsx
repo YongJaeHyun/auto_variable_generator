@@ -46,7 +46,6 @@ function App() {
   const outputRef = useRef<any>();
 
   const SERVER_URL = process.env.REACT_APP_SERVER_URL as string;
-  console.log(SERVER_URL);
 
   function makeToast(status: status, position: ToastPosition, title: string) {
     toastIdRef.current = toast({
@@ -60,7 +59,6 @@ function App() {
   }
 
   function copyTextToClipboard(text: string) {
-    console.log(text);
     if (navigator.clipboard) {
       // (IE는 사용 못하고, 크롬은 66버전 이상일때 사용 가능합니다.)
       navigator.clipboard
