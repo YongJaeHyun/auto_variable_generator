@@ -13,5 +13,5 @@ RUN npm ci --omit=dev
 # 모든 파일 Docker environment로 복사
 COPY . .
 
-EXPOSE 5000
+EXPOSE 8888
 CMD [ "node", "server.js" ]
