@@ -6,19 +6,13 @@ const fs = require("fs");
 const cors = require("cors");
 const { genVariable } = require("./genVariable");
 
-const HTTP_PORT = 8080;
-const HTTPS_PORT = 8443;
-
-const options = {
-  key: fs.readFileSync("./localhost-key.pem"),
-  cert: fs.readFileSync("./localhost.pem"),
-};
+const PORT = 5000;
 
 const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post("/ask", async (req, res) => {
   try {
@@ -44,5 +38,4 @@ app.post("/ask", async (req, res) => {
   }
 });
 
-http.createServer(app).listen(HTTP_PORT);
-https.createServer(options, app).listen(HTTPS_PORT);
+app.listen(PORT);
