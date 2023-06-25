@@ -24,4 +24,4 @@ yarn-error.log*
 *.pem
 
 # NginX
-/data/*
+*.conf
