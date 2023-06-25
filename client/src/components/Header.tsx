@@ -1,4 +1,14 @@
-import { Box, Button, Flex, HStack, Icon, Link, useColorMode } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  HStack,
+  Icon,
+  Image,
+  Link,
+  Text,
+  useColorMode,
+} from "@chakra-ui/react";
 import { IoLogoGithub, IoMdMoon, IoMdSunny } from "react-icons/io";
 
 const Header = () => {
@@ -27,11 +37,21 @@ const Header = () => {
             fontWeight="bold"
             fontSize="1.5rem"
           >
-            자동 함수명 생성기
+            <HStack spacing="1rem">
+              <Image src="/img/logo.png" boxSize="2.8rem" alt="로고" />
+              <Text>변수명 생성기</Text>
+            </HStack>
           </Link>
+
           <HStack spacing="1rem">
             <Flex w="2.5rem" h="2.5rem">
-              <Button as="a" target="_blank" href="https://github.com/YongJaeHyun/auto_variable_generator" w="2.5rem" h="2.5rem">
+              <Button
+                as="a"
+                target="_blank"
+                href="https://github.com/YongJaeHyun/auto_variable_generator"
+                w="2.5rem"
+                h="2.5rem"
+              >
                 <Icon as={IoLogoGithub} boxSize={6} />
               </Button>
             </Flex>
