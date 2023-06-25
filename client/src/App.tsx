@@ -92,20 +92,22 @@ function App() {
   }
 
   async function genVariable() {
-    try{
-      setIsLoading(true);
-      outputRef.current.scrollIntoView({
-        behavior: "smooth",
-      });
-      const { data }: { data: IChatGPTResponse } = await axios.post(`${SERVER_URL}/ask`, {
-        prompt,
-      })
-      if (data?.state === true) {
-        setGeneratedVars(data.data);
-      } else {
-        makeToast("error", "bottom-left", data.message);
+    try {
+      if (!isLoading) {
+        setIsLoading(true);
+        outputRef.current.scrollIntoView({
+          behavior: "smooth",
+        });
+        const { data }: { data: IChatGPTResponse } = await axios.post(`${SERVER_URL}/ask`, {
+          prompt,
+        });
+        if (data?.state === true) {
+          setGeneratedVars(data.data);
+        } else {
+          makeToast("error", "bottom-left", data.message);
+        }
+        setIsLoading(false);
       }
-      setIsLoading(false);
     } catch {
       setIsLoading(false);
       makeToast("error", "bottom-left", "서버 오류가 발생했습니다.");
