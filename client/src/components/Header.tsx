@@ -37,10 +37,7 @@ const Header = () => {
             fontWeight="bold"
             fontSize="1.5rem"
           >
-            <HStack spacing="1rem">
-              <Image src="/img/logo.png" boxSize="2.8rem" alt="로고" />
-              <Text>변수명 생성기</Text>
-            </HStack>
+            <Text>변수명 생성기</Text>
           </Link>
 
           <HStack spacing="1rem">
