@@ -1,7 +1,7 @@
 #Stage 1
 #######################################
 # --platform=linux/amd64
-FROM node:18 AS builder 
+FROM buildkite/puppeteer as builder
 
 # root 에 app 폴더를 생성
 WORKDIR /usr/src/app
