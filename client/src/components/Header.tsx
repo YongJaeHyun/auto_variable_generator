@@ -4,7 +4,6 @@ import {
   Flex,
   HStack,
   Icon,
-  Image,
   Link,
   Text,
   useColorMode,
@@ -46,6 +45,7 @@ const Header = () => {
                 as="a"
                 target="_blank"
                 href="https://github.com/YongJaeHyun/auto_variable_generator"
+                aria-label="프로젝트 깃허브 주소"
                 w="2.5rem"
                 h="2.5rem"
               >
@@ -53,7 +53,7 @@ const Header = () => {
               </Button>
             </Flex>
             <Flex justify="center" alignItems="center">
-              <Button w="2.5rem" h="2.5rem" onClick={toggleColorMode}>
+              <Button w="2.5rem" h="2.5rem" onClick={toggleColorMode} aria-label="테마 변경 버튼">
                 <Icon as={colorMode === "light" ? IoMdMoon : IoMdSunny} boxSize={6} />
               </Button>
             </Flex>

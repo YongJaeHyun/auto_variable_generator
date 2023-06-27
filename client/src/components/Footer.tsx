@@ -21,12 +21,12 @@ const Footer = () => {
           Recommend by ChatGPT 3.5 turbo
         </Text>
         <HStack spacing="1rem">
-          <Link target="_blank" href="https://github.com/YongJaeHyun">
+          <Link target="_blank" href="https://github.com/YongJaeHyun" aria-label="개발자 깃허브 주소">
             <Circle>
               <Icon as={IoLogoGithub} boxSize={6} />
             </Circle>
           </Link>
-          <Link href="mailto:dltjrrbs2020@gmail.com">
+          <Link href="mailto:dltjrrbs2020@gmail.com" aria-label="개발자 이메일 주소">
             <Circle>
               <Icon as={MdEmail} boxSize={6} />
             </Circle>
