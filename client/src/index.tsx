@@ -1,24 +1,23 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import theme from "./theme";
-import { hydrate } from "react-dom";
+import { hydrate, render } from "react-dom";
 
 // hydrate 설정
-const $root = document.getElementById('root') as HTMLElement;
-if ($root.hasChildNodes()) hydrate(<App />, $root);
+const $root = document.getElementById("root") as HTMLElement;
+const renderOrHydrate = $root.hasChildNodes() ? hydrate : render;
 
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
-root.render(
+renderOrHydrate(
   <React.StrictMode>
     <ChakraProvider resetCSS theme={theme}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <App />
     </ChakraProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
+  $root
 );
 
 // If you want to start measuring performance in your app, pass a function
