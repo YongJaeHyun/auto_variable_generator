@@ -35,6 +35,7 @@
     "eject": "react-scripts eject"
   },
   "reactSnap": {
+    "skipThirdPartyRequests": true,
     "puppeteerArgs": [
       "--no-sandbox",
       "--disable-setuid-sandbox",
